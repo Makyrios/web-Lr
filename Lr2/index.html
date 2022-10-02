@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна робота №2</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <header>
+    <h1 align="center">Форми HTML і позиціонування</h1>
+    <nav>
+      <p align="center">
+        <a href="#Реєстрація">Форма реєстрації | </a>
+        <a href="#Вхід">Форма входу | </a>
+        <a href="#Зворотній">Форма зворотнього зв'язку</a>
+      </p>
+    </nav>
+  </header>
+  <table align="center" class="dashed_table">
+    <tr height=40px>
+      <th align="center" colspan="2">Лабораторна робота №2. Виконавець Лавренюк Микита Сергійович, група ТР-13</th>
+    </tr>
+    <tr height=300px>
+      <td width=60%>
+        <img src="https://images.unian.net/photos/2021_02/thumb_files/400_0_1613373803-2196.jpg?0.5117241867597122"
+          class="left_img">
+        <b>Сирники</b> - традиційна страва української кухні. Їх прийнято готувати на сніданок, адже часу на
+        приготування йде зовсім небагато. Особливо смачними виходять сирники з домашнього сиру. Подають їх традиційно
+        зі сметаною.
+        <br>
+        Поєднати в мисці сир, яйце, цукор, ванільний цукор і сіль. Перемішати до однорідності і поступово додати
+        борошно. Тісто повинне вийти щільним, щоб можна було скачати м'яку кульку. Формуємо сирники та обсмажуємо їх
+        на сковороді з обох боків до золотистої скоринки.
+        <img src="https://images.unian.net/photos/2020_02/1580821818-1898.jpg?0.5003043426227971" class="right_img">
+        Сир перетерти або подрібнити блендером. Додати борошно, яйце, цукор, сіль. Тісто має бути дуже м'яким, але не
+        липким. На засипаному борошном столі розкачати ковбаску діаметром близько 5 см, нарізати на шматочки близько
+        1-1,5 см. Отримані сирники обваляти в борошні й обсмажити на топленому маслі з обох сторін.
+        <img
+          src="https://rivne.media/media/img/650/2021/06/yak-prihotuvati-sirniki-prostiy-pokrokoviy-retsept20210619_6949.jpg"
+          id="bottom_img" </td>
+      <td>
+        <div style="position:relative; height:600px">
+          <img
+            src="https://static.wikia.nocookie.net/warrior/images/a/ad/Deathofkevincrow.jpg/revision/latest?cb=20160202110346&path-prefix=ru"
+            id="r1">
+          <img src="https://www.meme-arsenal.com/memes/841ec9173da6b2673a56e8863a891ff2.jpg" id="r2">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEAjB351sBcnTklC4AXWtNGaeQ8PQuxZ5l1Q&usqp=CAU"
+            id="r3">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+  </hr>
+  <form action="/action_page.php" method="get">
+    <table class="dashed_table" align="center" style="background-color: #00FFFF;">
+      <tr>
+        <td>
+          <h2 align="center">
+            <a name="Реєстрація">Форма реєстрації</a>
+          </h2>
+          <div style="display: flex;margin-bottom: 5%">
+            <div class="reg1">
+              <label for="country">Країна проживання</label>
+              <select name="country" class="text">
+                <option selected disabled>Країна</option>
+                <option value="Ukraine">Україна</option>
+                <option value="Poland">Польща</option>
+                <option value="USA">США</option>
+                <option value="UK">Великобританія</option>
+                <option value="Litva">Литва</option>
+                <option value="Latvia">Латвія</option>
+                <option value="Estonia">Естонія</option>
+              </select>
+              <br>
+              <label for="phone">Номер телефону</label>
+              <input type="tel" class="text" placeholder="+380xxxxxxxxx" pattern="\+380[0-9]{9}" maxlength="13">
+              <br>
+              <label for="social">Соціальна мережа</label>
+              <input type="url" class="text" name="social" placeholder="Посилання на соц.мережу">
+              <br>
+              <label for="email">Електронна пошта</label>
+              <input type="email" class="text" name="email" placeholder="example@email.com">
+              <br>
+              <label for="password">Пароль</label>
+              <input type="password" class="text" name="password" pattern="[A-Za-z0-9]{8-15}" maxlength="15"
+                placeholder="Пароль">
+              <br>
+              <input type="checkbox" name="agreement" id="agreement" style="display:inline;">
+              <label for="agreement">Чи згодні Ви з умовами?</label>
+            </div>
+
+            <div class="reg2">
+              <label for="name">Ім'я</label>
+              <input type="text" class="text" placeholder="Ім'я">
+              <br>
+              <label for="surname">Прізвище</label>
+              <input type="text" class="text" placeholder="Прізвище">
+              <br>
+              <fieldset>
+                <legend>Стать</legend>
+                <input type="radio" id="male" name="sex">
+                <label for="male">Чоловіча</label>
+                <input type="radio" id="female" name="sex">
+                <label for="female">Жіноча</label>
+              </fieldset>
+              <br>
+              <label for="age">Вік</label>
+              <input type="number" name="age">
+              <br>
+              <br>
+              <label for="birthday">Дата народження</label>
+              <input type="month" name="birthday">
+              <div class="reg3">
+                <button type="submit">Зареєструватися</button>
+                <button type="reset">Відміна</button>
+              </div>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <hr>
+  </hr>
+
+  <form action="/action_page.php" method="get">
+    <table align="center" class="dashed_table" style="background-color:orange;height:200px;width:30%">
+      <tr>
+        <td>
+          <h2 align="center">
+            <a name="Вхід">Форма входу</a>
+          </h2>
+          <div class="login">
+            <input type="text" class="linput" placeholder="Логін" name="login">
+            <input type="password" class="linput" placeholder="Пароль" name="password" pattern="[A-Za-z0-9]{8-15}"
+              maxlength="15">
+            <button type="submit">Вхід</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <hr>
+  </hr>
+
+  <form action="/action_page.php" method="get" align="center" class="dashed_table"
+    style="margin: 0 auto; background-color:lightyellow; width:50%; border: 1px dashed; padding: 10px;">
+    <a name="Зворотній">Форма зворотнього зв'язку</a>
+    <div class="feedback">
+      <div style="min-width: 200px; margin-right: 10px;">
+        <input type="text" class="finput" placeholder="Ім'я" name="name">
+        <input type="email" class="finput" placeholder="Ел. пошта" name="email">
+        <select name="topic" class="finput" placeholder="Тема">
+          <option selected disabled>Тема повідомлення</option>
+          <option value="orthographic">Помилка в тексті</option>
+          <option value="report">Скарга</option>
+          <option value="contact">Зв'язок з адміністрацією</option>
+        </select>
+        <br>
+        <button type="submit" id="sendFeedback">Відправити</button>
+      </div>
+
+      <textarea name="feedback" rows=15 cols=60 placeholder="Повідомлення"></textarea>
+    </div>
+  </form>
+  <a href="#">
+    <img class="up_button" src="https://static.thenounproject.com/png/2928430-200.png">
+  </a>
+  <footer>
+    <a href="https://www.instagram.com/makyrios13/">
+      <img src="http://store-images.s-microsoft.com/image/apps.31997.13510798887167234.6cd52261-a276-49cf-9b6b-9ef8491fb799.30e70ce4-33c5-43d6-9af1-491fe4679377">
+    </a>
+    <a href="https://t.me/Makyrios">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1200px-Telegram_logo.svg.png">
+    </a>
+  </footer>
+</body>
+
+</html>
