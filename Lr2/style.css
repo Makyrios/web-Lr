@@ -8,11 +8,6 @@ table {
   border-collapse: collapse;
 }
 
-/* hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-} */
-
 table.dashed_table td {
   border: 1px dashed;
   vertical-align: top;
