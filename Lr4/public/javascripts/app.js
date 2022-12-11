@@ -267,7 +267,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                     opt++;
                     size = questions[i].answers[letter].length;
                 }
-                string += '</select></label>';
+                string += '</select></label> ';
                 
                 answers.push(string);
                 selectIterator++;
@@ -311,7 +311,6 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 	function showResults(questions, quizContainer, resultsContainer){
         var answerContainers = quizContainer.querySelectorAll('.answers');
         
-        // keep track of user's answers
         var userAnswer = '';
         var numCorrect = 0;
 
@@ -324,12 +323,10 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             if (questions[i].type == 'radio') {
                 userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 
-                // Correct answer
                 if(userAnswer===questions[i].correctAnswer){
                     numCorrect++;
                     answerContainers[i].style.color = 'lightgreen';
                 }
-                // Wrong answer
                 else {
                     answerContainers[i].style.color = 'red';
                 }
@@ -407,7 +404,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                     }
                     selectIterator++;
                 }
-                // Add 1 to numCorrect if all answers are correct
+                // Add 1 to numCorrect only if all answers are correct
                 if (score == questions[i].correctAnswer.length) {
                     numCorrect++;
                 }
@@ -432,14 +429,11 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             }
 	}
 
-	// show number of correct answers out of total
 	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
 	}
 
-	// show the questions
 	showQuestions(questions, quizContainer);
 
-	// when user clicks submit, show results
 	submitButton.onclick = function(){
 		showResults(questions, quizContainer, resultsContainer);
 	}
@@ -534,28 +528,7 @@ function StudentObject(specialty, group) {
         this.group = '';
     }
 
-    // showData() {
-    //     return 'Name: ' + this.getName + "\nSurname: " + this.getSurname + '\nSpecialty: ' + this.specialty + '\nGroup: ' + this.group;
-    // }
-
 }
-
-// function StudentObject(name, surname, specialty, group) {
-//     this.name = name;
-//     this.surname = surname;
-//     this.specialty = specialty;
-//     this.group = group;
-// }
-
-
-// StudentObject.setName = "Артур";
-// StudentObject.setSurname = "Бебрознавченко";
-// StudentObject.setSpecialty = "122";
-// StudentObject.setGroup = "ТР-16";
-
-// StudentObject.showData();
-
-// StudentObject2.showData();
 
 
 var user = new UserObject;
@@ -686,8 +659,6 @@ function task5GetGrades() {
         return;
     }
 
-    //var progress = new ProgressObject(test, attempt, []);
-
     progressObject.test = test;
     progressObject.attempt = attempt;
     progressObject.grades = [];
@@ -722,7 +693,7 @@ function task5GetAverageGrade() {
     progressObject.calculateAverageGrade();
     
     var output = document.getElementById('task5Result');
-    output.innerHTML = `<p>Середня оцінка: ${progress.averageGrade}<\p>`;
+    output.innerHTML = `<p>Середня оцінка: ${progressObject.averageGrade}<\p>`;
 }
 
 class User {
@@ -813,6 +784,13 @@ class Progress extends Student {
         return this.grades;
     }
 
+    showData() {
+        console.log('Name: ' + this.name + '\nSurname: '
+        + this.surname + '\nSpecialty: ' + this.specialty + '\nGroup: ' 
+        + this.group + '\nTest: ' + this.test + '\nAttempt: ' 
+        + this.attempt + '\nGrades: ' + this.grades + '\nAverage grade: ' + this.averageGrade);
+    }
+
     calculateAverageGrade() {
         if (this.grades.length == 0) {
             alert('Оцінки відсутні');
@@ -882,7 +860,7 @@ const formId = 'quizForm';
 const form = document.getElementById(formId);
 function toJSONString(form) {
   var obj = {}
-  var elements = form.querySelectorAll('#name')
+  var elements = form.querySelectorAll('#name, #group')
   for (var i = 0; i < elements.length; ++i) {
     var element = elements[i]
     var name = element.name
@@ -891,6 +869,7 @@ function toJSONString(form) {
       obj[ name ] = value
     }
   }
+  obj['results'] = document.getElementById('results').innerHTML;
   return JSON.stringify(obj)
 }
 if (form) {
@@ -899,8 +878,7 @@ if (form) {
     const json = toJSONString(form)
     const formReq = new XMLHttpRequest()
     formReq.open('POST', '/telegram', true)
-    ///////////////////////////////////
-    /////////////SweetAlert////////////
+
     formReq.onload = function(oEvent) {
       if (formReq.status === 200) {
         swal({
@@ -917,8 +895,7 @@ if (form) {
         })
       }
     }
-    ////////////////////////////
-    ////////////////////////////
+
     formReq.setRequestHeader('Content-Type', 'application/json')
     formReq.send(json)
   })

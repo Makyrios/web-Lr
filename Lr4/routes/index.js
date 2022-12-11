@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Telegram Msg' });
 });
 
-const ctrlTelegram = require('../api/telegramMsg');
+const ctrlTelegram = require('../api/sendResults');
 router.post('/telegram', ctrlTelegram.sendMsg);
 
 module.exports = router;

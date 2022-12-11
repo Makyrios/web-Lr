@@ -1,6 +1,10 @@
 {
   "telegram": {
-    "token": "1873918280:AAGEJjW0SY8yT1WydxxJS6atP4xu7giZnFc",
-    "chat": "-1001719274025"
+    "token": "1858844290:AAG4xVcUFcD6nNnKqz1biKvcGrhwNCsOHMk",
+    "chat": "-519873227"
+  },
+  "email": {
+    "user": "lavreniuk.mykyta@lll.kpi.ua",
+    "pass": "ibrvifggsvdnpmbc"
   }
 }
