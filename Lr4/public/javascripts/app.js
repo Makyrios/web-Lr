@@ -1,10 +1,10 @@
-var quizContainer = document.getElementById('quiz');
-var submitButton = document.getElementById('submit');
-var resultsContainer = document.getElementById('results');
+let quizContainer = document.getElementById('quiz');
+let submitButton = document.getElementById('submit');
+let resultsContainer = document.getElementById('results');
 
 getRandomElement = function (arr) {
-    var randomIndex = Math.floor(Math.random() * arr.length);
-    var element = arr[randomIndex];
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    let element = arr[randomIndex];
     arr.splice(randomIndex, 1);
     return element;
 }
@@ -17,12 +17,12 @@ const compareArrays = (array1, array2) => {
   };
 
 
-var questions = [
+let questions = [
     {
         type: 'radio',
         question: 'Який код дозволяє малювати різні фігури та лінії в canvas?',
-        answersList: ["var c = document.getElementById('myCanvas'); var ctx = c.getContext('2d');",
-                    "var c = document.getElementById('myCanvas');",
+        answersList: ["let c = document.getElementById('myCanvas'); let ctx = c.getContext('2d');",
+                    "let c = document.getElementById('myCanvas');",
                     "draw();",
                     "function canvasDraw();"
                     ],
@@ -32,7 +32,7 @@ var questions = [
             c: null,
             d: null
         },
-        correctAnswer: "var c = document.getElementById('myCanvas'); var ctx = c.getContext('2d');"
+        correctAnswer: "let c = document.getElementById('myCanvas'); let ctx = c.getContext('2d');"
     },
     {
         type: 'radio',
@@ -91,7 +91,7 @@ var questions = [
         answers: {
             a: ''
         },
-        correctAnswer: ["ctx.strokeStyle = 'green';", 'ctx.strokeStyle = "green";']
+        correctAnswer: ["ctx.strokeStyle = 'green';", 'ctx.strokeStyle = "green";', "ctx.strokeStyle='green';", 'ctx.strokeStyle="green";']
     },
     {
         type: 'text',
@@ -99,7 +99,7 @@ var questions = [
         answers: {
             a: ''
         },
-        correctAnswer: ["alert('Hello World');", "alert('Hello World');"]
+        correctAnswer: ["alert('Hello World');", 'alert("Hello World");']
     },
     {
         type: 'select',
@@ -126,10 +126,10 @@ var questions = [
         type: 'select',
         question: "Заповніть пропуски для того, щоб нарисувати круг за допомогою canvas<br>\
         <pre>\
-        var cv = document.getElementById('canvas');<br>\
-        var ct = cv.getContext('<strong>a</strong>'');<br>\
-        var w = cv.width;<br>\
-        var h = cv.height;<br>\
+        let cv = document.getElementById('canvas');<br>\
+        let ct = cv.getContext('<strong>a</strong>'');<br>\
+        let w = cv.width;<br>\
+        let h = cv.height;<br>\
         ct.<strong>b</strong> = 'rgba(127, 127, 255, 1.0)';<br>\
         ct.fillStyle = 'rgba(0, 0, 255, 1.0)'';<br>\
         ct.lineWidth = 5;<br>\
@@ -200,20 +200,20 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
 	function showQuestions(questions, quizContainer){
 
-	var output = [];
-	var answers;
+	let output = [];
+	let answers;
     
     let selectIterator = 0;
     let dragIterator = 0;
 	// Iterating over questions
-	for(var i = 0; i < questions.length; i++){
+	for(let i = 0; i < questions.length; i++){
         // Used for randomizing options order in select
         let selectIterator2 = 0;
 		
 		answers = [];
 
 		// Iterating over all answers in current question
-		for(letter in questions[i].answers){
+		for (letter in questions[i].answers){
             // Set random answers to letters
             if (questions[i].type == 'radio' || questions[i].type == 'checkbox' || questions[i].type == 'draganddrop') {
                 questions[i].answers[letter] = getRandomElement(questions[i].answersList);
@@ -257,7 +257,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             
             
             else if (questions[i].type == 'select') {
-                var string = '<label>'+letter+': '
+                let string = '<label>'+letter+': '
                 + '<select name="question'+i+'" id="question'+i+selectIterator+'"">';
 
                 let opt = 0;
@@ -284,7 +284,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
         // For the draganddrop type
         if (questions[i].type == 'draganddrop') {
-            var string = '<div class="question">' + questions[i].question + '</div>';
+            let string = '<div class="question">' + questions[i].question + '</div>';
             for (let j = 1; j <= Object.keys(questions[i].questions).length; j++) { 
                 string += '<div class="questions-container">'
                         + '<div class="questions">'+j+'. '+questions[i].questions[j]+'</div>'+'<div class="dropbox" id="dropbox'+i+j+'"></div>'
@@ -309,10 +309,10 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 	}
 
 	function showResults(questions, quizContainer, resultsContainer){
-        var answerContainers = quizContainer.querySelectorAll('.answers');
+        let answerContainers = quizContainer.querySelectorAll('.answers');
         
-        var userAnswer = '';
-        var numCorrect = 0;
+        let userAnswer = '';
+        let numCorrect = 0;
 
         let selectIterator = 0;
         let dragIterator = 0;
@@ -342,13 +342,13 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
                 // If none of checkboxes are checked than color all of them red
                 if (userAnswers.length == 0) {
-                    var letters = Object.keys(questions[i].answers);
+                    let letters = Object.keys(questions[i].answers);
                     for (let j = 0; j < letters.length; j++) {
                         document.getElementById(letters[j]+i).style.color = 'red';
                     }
                 }
 
-                var letters = Object.keys(questions[i].answers);
+                let letters = Object.keys(questions[i].answers);
                 // If answers are correct
                 if (compareArrays(userAnswers, questions[i].correctAnswer)) {
                     numCorrect++;
@@ -441,7 +441,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
     /*
     *   Drag and drop functionality
     */
-    var dragItems = document.querySelectorAll('p[draggable="true"]');
+    let dragItems = document.querySelectorAll('p[draggable="true"]');
     dragItems.forEach(function addListeners() {
         addEventListener('dragstart', dragStart);
     })
@@ -450,7 +450,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
         e.dataTransfer.setData('text/plain', e.target.id);
     }
 
-    var dropBoxes = document.querySelectorAll('.dropbox');
+    let dropBoxes = document.querySelectorAll('.dropbox');
     dropBoxes.forEach(box => {
         box.addEventListener('dragenter', dragEnter);
         box.addEventListener('dragover', dragOver);
@@ -531,11 +531,11 @@ function StudentObject(specialty, group) {
 }
 
 
-var user = new UserObject;
+let user = new UserObject;
 
 function task1() {
-    var name = document.getElementById('userObjectName').value;
-    var surname = document.getElementById('userObjectSurname').value;
+    let name = document.getElementById('userObjectName').value;
+    let surname = document.getElementById('userObjectSurname').value;
 
     if (name == "" || surname == "") {
         alert('Введіть ім\'я та прізвище');
@@ -547,16 +547,16 @@ function task1() {
 
     console.log(user);
 
-    var output = document.getElementById('task1Result');
+    let output = document.getElementById('task1Result');
     output.innerHTML = `<p>Ім'я користувача: ${user.name}<\p>\
                         <p>Прізвище користувача: ${user.surname}<\p>`;
 }
 
-var student = new StudentObject;
+let student = new StudentObject;
 
 function task2() {
-    var specialty = document.getElementById('studentObjectSpecialty').value;
-    var group = document.getElementById('studentObjectGroup').value;
+    let specialty = document.getElementById('studentObjectSpecialty').value;
+    let group = document.getElementById('studentObjectGroup').value;
     
     student.setSpecialty(specialty);
     student.setGroup(group);
@@ -569,26 +569,26 @@ function task2() {
     }
     
 
-    var output = document.getElementById('task2Result');
+    let output = document.getElementById('task2Result');
     output.innerHTML = `<p>Спеціальність студента: ${student.specialty}<\p>\
                         <p>Група студента: ${student.group}<\p>`;
 
 }
 
 function task2clearspecialty() {
-    var specialtyInput = document.getElementById('studentObjectSpecialty');
+    let specialtyInput = document.getElementById('studentObjectSpecialty');
     specialtyInput.value = '';
     student.clearSpecialty();
-    var output = document.getElementById('task2Result');
+    let output = document.getElementById('task2Result');
     output.innerHTML = `<p>Спеціальність студента: ${student.specialty}<\p>\
                         <p>Група студента: ${student.group}<\p>`;
 }
 
 function task2cleargroup() {
-    var groupInput = document.getElementById('studentObjectGroup');
+    let groupInput = document.getElementById('studentObjectGroup');
     groupInput.value = '';
     student.clearGroup();
-    var output = document.getElementById('task2Result');
+    let output = document.getElementById('task2Result');
     output.innerHTML = `<p>Спеціальність студента: ${student.specialty}<\p>\
                         <p>Група студента: ${student.group}<\p>`;
 }
@@ -596,9 +596,9 @@ function task2cleargroup() {
 
 
 function task3user() {
-    var user2 = Object.create(user);
+    let user2 = Object.create(user);
 
-    var output = document.getElementById('task3Result1');
+    let output = document.getElementById('task3Result1');
     output.innerHTML = `<p>Ім'я користувача: ${user2.name}<\p>\
                         <p>Прізвище користувача: ${user2.surname}<\p>`;
 }
@@ -606,14 +606,14 @@ function task3user() {
 function task3student() {
     let student2 = Object.create(student);
 
-    var output = document.getElementById('task3Result2');
+    let output = document.getElementById('task3Result2');
     output.innerHTML = `<p>Спеціальність студента: ${student2.specialty}<\p>\
                         <p>Група студента: ${student2.group}<\p>`;
 }
 
 function task4() {
     StudentObject.prototype.showData = function() {
-        var output = document.getElementById('task4Result');
+        let output = document.getElementById('task4Result');
 
         output.innerHTML = `<p>Спеціальність студента: ${this.specialty}<\p>\
                             <p>Група студента: ${this.group}<\p>`
@@ -644,11 +644,11 @@ function ProgressObject(test, attempt, grades) {
     }
 }
 
-var progressObject = new ProgressObject;
+let progressObject = new ProgressObject;
 
 function task5GetGrades() {
-    var test = document.getElementById('progressTest').value;
-    var attempt = document.getElementById('progressAttempt').value;
+    let test = document.getElementById('progressTest').value;
+    let attempt = document.getElementById('progressAttempt').value;
 
     if (test == "" || attempt == "") {
         alert('Введіть тест та спробу');
@@ -663,14 +663,14 @@ function task5GetGrades() {
     progressObject.attempt = attempt;
     progressObject.grades = [];
 
-    var inputsContainer = document.getElementById('inputsContainer');
+    let inputsContainer = document.getElementById('inputsContainer');
     let output = '';
     for (let i = 0; i < attempt; i++) {
         output += `<input type="text" id="progressGrade${i}" placeholder="Оцінка ${i + 1}">`;
     }
     inputsContainer.innerHTML = output;
 
-    var button = document.getElementById('task5GetAverageGrade');
+    let button = document.getElementById('task5GetAverageGrade');
     button.classList.remove('hide');
 
 }
@@ -692,7 +692,7 @@ function task5GetAverageGrade() {
 
     progressObject.calculateAverageGrade();
     
-    var output = document.getElementById('task5Result');
+    let output = document.getElementById('task5Result');
     output.innerHTML = `<p>Середня оцінка: ${progressObject.averageGrade}<\p>`;
 }
 
@@ -805,15 +805,15 @@ class Progress extends Student {
     }
 }
 
-var progress;
+let progress;
 
 function task6() {
-    var name = document.getElementById('userObjectName1').value;
-    var surname = document.getElementById('userObjectSurname1').value;
-    var specialty = document.getElementById('studentObjectSpecialty1').value;
-    var group = document.getElementById('studentObjectGroup1').value;
-    var test = document.getElementById('progressTest1').value;
-    var attempt = document.getElementById('progressAttempt1').value;
+    let name = document.getElementById('userObjectName1').value;
+    let surname = document.getElementById('userObjectSurname1').value;
+    let specialty = document.getElementById('studentObjectSpecialty1').value;
+    let group = document.getElementById('studentObjectGroup1').value;
+    let test = document.getElementById('progressTest1').value;
+    let attempt = document.getElementById('progressAttempt1').value;
 
     if (name == "" || surname == "" || specialty == "" || group == "") {
         alert('Заповніть всі поля');
@@ -822,14 +822,14 @@ function task6() {
 
     progress = new Progress(name, surname, specialty, group, test, attempt);
 
-    var inputsContainer = document.getElementById('inputsContainer1');
+    let inputsContainer = document.getElementById('inputsContainer1');
     let output = '';
     for (let i = 0; i < attempt; i++) {
         output += `<input type="text" id="progressGrade1${i}" placeholder="Оцінка ${i + 1}">`;
     }
     inputsContainer.innerHTML = output;
 
-    var button = document.getElementById('task6GetAverageGrade');
+    let button = document.getElementById('task6GetAverageGrade');
     button.classList.remove('hide');
     
 }
@@ -851,7 +851,7 @@ function task6GetAverageGrade() {
 
     progress.calculateAverageGrade();
     
-    var output = document.getElementById('task6Result');
+    let output = document.getElementById('task6Result');
     output.innerHTML = `<p>Середня оцінка: ${progress.averageGrade}<\p>`;
 }
 
@@ -859,12 +859,12 @@ function task6GetAverageGrade() {
 const formId = 'quizForm';
 const form = document.getElementById(formId);
 function toJSONString(form) {
-  var obj = {}
-  var elements = form.querySelectorAll('#name, #group')
-  for (var i = 0; i < elements.length; ++i) {
-    var element = elements[i]
-    var name = element.name
-    var value = element.value
+  let obj = {}
+  let elements = form.querySelectorAll('#name, #group')
+  for (let i = 0; i < elements.length; ++i) {
+    let element = elements[i]
+    let name = element.name
+    let value = element.value
     if (name) {
       obj[ name ] = value
     }
